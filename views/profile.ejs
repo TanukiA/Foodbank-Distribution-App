@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <%- include ("header") %>
+        <div class="title clearfix">
+            <p><span>Profile</span></p>
+        </div>
+
+        <div class="profile-box">
+            <div class="left">
+                <div class="picture-box">
+                    <div class="image">
+
+                        <label for="change-profile">
+                        <!--<div class="image__overlay image__overlay--primary">
+                            <p class="image-description">Change photo</p>
+                        </div>
+                        <input type="file" name="" id="change-profile" style="display: none; visibility: none;">-->
+                    </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="display-data">
+                    <h1>
+                        <%=profile_arr[0].user_name%>
+                    </h1>
+                    <div class="item">
+                        <h2>Email: </h2>
+                        <p>
+                            <%=profile_arr[0].user_email%>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <h2>Phone Number: </h2>
+                        <p>
+                            <%=profile_arr[0].user_phone%>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <h2>Username: </h2>
+                        <p>
+                            <%=profile_arr[0].user_username%>
+                        </p>
+                    </div>
+                    <div class="item">
+                        <h2>Password: </h2>
+                        <p>
+                            <%=profile_arr[0].user_password%>
+                        </p>
+                    
+                    </div>
+
+                    <div class="profile-button">
+                        <a href="/editProfile"><button class="btn btn-full btn-margin-profile">Edit Profile</button></a>
+                        <!--<button class="btn btn-full btn-margin-profile">Save Profile</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <%- include ("footer") %>
+       
+</body>
+
+</html>

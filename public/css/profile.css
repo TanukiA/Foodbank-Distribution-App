@@ -1,0 +1,317 @@
+@font-face {
+    font-family: 'great_wishes';
+    src: url(fonts/great_wishes-webfont.woff2) format("woff2"), url(fonts/great_wishes-webfont.woff) format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profile-box {
+    position: relative;
+    background: #ffffff;
+    width: 1100px;
+    height: 500px;
+    margin: 60px auto;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+}
+
+.left {
+    background: #C3D8C5;
+    width: 40%;
+    height: 100%;
+    float: left;
+    display: block;
+}
+
+.right {
+    width: 60%;
+    height: 100%;
+    float: right;
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+
+.picture-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a5a5a5;
+}
+
+.title p {
+    position: relative;
+    font-size: 300%;
+    font-weight: 600;
+    color: #627964;
+    margin-top: 20px;
+    margin-left: 55px;
+}
+
+.title p span:before {
+    position: absolute;
+    content: "";
+    position: absolute;
+    width: 50px;
+    border-bottom: #627964 solid 6px;
+    margin-top: 1.5em;
+}
+
+.display-data {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    margin-left: 50px;
+}
+
+.display-data h1 {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    font-size: 35px;
+    margin-top: -20px;
+}
+
+.item {
+    margin-bottom: 30px;
+}
+
+.display-data h2 {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    display: inline;
+    font-size: 18px;
+}
+
+.display-data p {
+    margin: 25px 10px;
+    padding: 5px 0;
+    color: #627964;
+    display: inline;
+    font-size: 18px;
+}
+
+.btn:link,
+.btn {
+    border: 3px solid #627964;
+    color: #627964;
+    background-color: transparent;
+    border-radius: 200px;
+    padding: 8px 21px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    size: 200%;
+    cursor: pointer;
+}
+
+.btn-margin {
+    margin: 3% 0% 0% 2.5%;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    background-color: #627964;
+    color: #efefef
+}
+
+
+/* Edit */
+
+#editAddress {
+    margin-left: 10px;
+}
+
+.input-data {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    margin-left: 50px;
+}
+
+.input-data .item input {
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    color: #627964;
+    font-weight: 300;
+    padding-left: 1rem;
+}
+
+.input-data h2 {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    display: inline;
+    font-size: 18px;
+}
+
+.input-data h1 {
+    margin: 25px 0;
+    padding: 5px 0;
+    color: #627964;
+    font-size: 35px;
+    margin-top: -20px;
+}
+
+
+/* MAP */
+
+.blur-background {
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 35px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.close:hover {
+    color: rgb(184, 33, 33);
+}
+
+.sb-title {
+    position: relative;
+    top: -12px;
+    font-weight: 500;
+}
+
+.sb-title-icon {
+    position: relative;
+    top: -5px;
+}
+
+.card-container {
+    height: 450px;
+    width: 650px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 60px 0;
+    position: relative;
+    display: flex;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.panel {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.half-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.half-input {
+    max-width: 120px;
+    border: 0;
+    border-bottom: 1px solid #627964;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    height: 30px;
+    margin-top: 30px;
+}
+
+.map {
+    width: 300px;
+}
+
+.textInput {
+    height: 30px;
+    width: 99%;
+    border: 0;
+    border-bottom: 1px solid #627964;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 30px;
+}
+
+.textInput:focus::placeholder {
+    color: white;
+}
+
+.half-input:focus::placeholder {
+    color: white;
+}
+
+.mapButton:link,
+.mapButton {
+    border: 2px solid #627964;
+    color: #627964;
+    background-color: transparent;
+    border-radius: 200px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.mapButton-full:hover,
+.mapButton-full:active {
+    background-color: #627964;
+    color: #efefef
+}
+
+.fa-check-circle {
+    color: #627964;
+    margin-left: 5px;
+    visibility: hidden;
+}
+
+.latlong-box {
+    float: right;
+    display: inline;
+    width: 120px;
+    margin-top: 49px;
+}
+
+.latlong {
+    width: 110px;
+    text-align: right;
+    border: 0;
+}
+
+.from {
+    float: right;
+    width: 40px;
+    font-size: 12px;
+    display: inline;
+    top: -3px;
+    border: 0;
+    color: transparent;
+    cursor: context-menu;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/adminHome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <%- include ("adminHeader") %>
+        <div class="clearfix header-box">
+            <img class="header-img" src="img/homeHeader1.png" alt="Background">
+            <div class="header-img-text ">
+                <h1 class="animate__animated animate__slideInDown">Scroll Down</h1>
+                <i class="fas fa-angle-double-down animate__animated animate__slideInDown"></i>
+            </div>
+        </div>
+        <div class="se-container">
+            <div class="top-padding">
+                <h1 class="right">Request<img src="img/homeComp.png" class="imageClass"></h1>
+            </div>
+            <div class="se-slope1 clearfix">
+                <article class="se-content">
+                    <p>Click here to manage food bank request!</p>
+                    <button type="button" class="btn btn-full">Manage Request</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+
+            <div class="top-padding">
+                <img src="img/homeRead.png" class="imageClass left">
+                <h1 class="left">Food Banks </h1>
+            </div>
+            <div class="se-slope2 clearfix">
+                <article class="se-content">
+                    <p>Click here to see all available Food Banks!</p>
+                    <button type="button" class="btn btn-full">View All Food Banks</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+            <div class="top-padding">
+                <h1 class="right">User Accounts<img src="img/homeComp.png" class="imageClass"></h1>
+            </div>
+            <div class="se-slope1 clearfix">
+                <article class="se-content">
+                    <p>Click here to manage user accounts!</p>
+                    <button type="button" class="btn btn-full">View User Account</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+
+            <div class="top-padding">
+                <h1 class="left">Report<img src="img/homeListen.png" class="imageClass left"></h1>
+            </div>
+            <div class="se-slope2 clearfix">
+                <article class="se-content">
+                    <p>Click here to view report!</p>
+                    <button type="button" class="btn btn-full">View Activity</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+        </div>
+        <%- include ("footer") %>
+
+            <script>
+                document.getElementById("footer-box").style.background = "#900000";
+                document.getElementById("footer-foot-box").style.background = "#DA6E6E";
+            </script>
+</body>
+
+</html>

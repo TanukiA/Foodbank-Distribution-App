@@ -1,0 +1,160 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#title {
+    color: #9902028c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-indent: 40px;
+}
+
+#list-box {
+    background-color: #f79b9be8;
+    padding: 45px;
+    transform: skewY(-2deg);
+}
+
+#foodbank {
+    background-color: white;
+    border-radius: 35px;
+    border: 2px outset #9902028c;
+    margin: 10px auto;
+    padding: 20px;
+    width: 73%;
+    padding-left: 20px;
+    overflow: hidden;
+    transform: skewY(2deg);
+}
+
+.fb-name {
+    text-align: center;
+    color: #9902028c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.sub-info {
+    color: #9902028c;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+    margin: 0;
+}
+
+.sub-content {
+    color: #9902028c;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: 400;
+    padding: 8px;
+    margin: 0;
+    text-indent: 20px;
+}
+
+#hr-out {
+    border-top: 5px solid#9902028c;
+    width: 3.5%;
+    margin: 40px;
+}
+
+#hr-in {
+    border-top: 5px solid#9902028c;
+}
+
+.food-table {
+    border-collapse: collapse;
+    margin-left: 30px;
+}
+
+table.food-table th {
+    color: #9902028c;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #9902028c;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+table.food-table td {
+    color: #9902028c;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    border: 1px solid #9902028c;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.search-btn:link,
+.search-btn {
+    background-color: #656864;
+    border: 3px solid #656864;
+    color: #efefef;
+    border-radius: 10px;
+    padding: 8px 27px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    size: 100%;
+    margin: 1.5% 0% 1% 30%;
+    cursor: pointer;
+}
+
+.search-btn-full:hover,
+.search-btn-full:active,
+.search-btn-full:hover {
+    border: 3px solid #000000;
+    color: #000000;
+    background-color: transparent;
+}
+
+.fb-btn:link,
+.fb-btn {
+    border: 3px solid #9902028c;
+    color: #9902028c;
+    background-color: transparent;
+    border-radius: 150px;
+    padding: 8px 27px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    size: 100%;
+    margin: 1% 0% 1% 1%;
+    float: right;
+    cursor: pointer;
+}
+
+.fb-btn-full:hover,
+.fb-btn-full:active,
+.fb-btn-full:hover {
+    background-color: #9902028c;
+    color: #efefef
+}
+
+#white-box {
+    background-color: white;
+    padding: 45px;
+    transform: skewY(2deg);
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+.address-box {
+    display: inline-flex;
+    font-size: 10px;
+    color: transparent;
+}

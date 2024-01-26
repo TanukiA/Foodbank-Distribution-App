@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#title {
+    color: #9902028c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-indent: 40px;
+}
+
+#hr-out {
+    border-top: 5px solid#9902028c;
+    width: 3.5%;
+    margin: 40px;
+}
+
+#request-box {
+    background-color: #f79b9be8;
+    padding: 45px;
+    transform: skewY(-2deg);
+}
+
+#request {
+    background-color: white;
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    height: 550px;
+    margin-top: 30px;
+    left: 50%;
+    padding: 45px;
+    transform: skewY(2deg);
+}
+
+#request-table {
+    background-color: white;
+    border: 2px outset #9902028c;
+    color: #9902028c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    margin: 10px auto;
+    padding: 45px;
+    width: 100%;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.ap-btn:link,
+.ap-btn {
+    border: 3px solid #9902028c;
+    color: #9902028c;
+    background-color: transparent;
+    border-radius: 150px;
+    padding: 8px 27px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    size: 100%;
+    margin: 1% 0% 1% 1%;
+    float: right;
+    cursor: pointer;
+}
+
+.dc-btn:link,
+.dc-btn {
+    border: 3px solid #9902028c;
+    color: #9902028c;
+    background-color: transparent;
+    border-radius: 150px;
+    padding: 8px 27px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    size: 100%;
+    margin: 1% 0% 1% 1%;
+    float: right;
+    cursor: pointer;
+}
+
+.dc-btn-full:hover,
+.dc-btn-full:active,
+.dc-btn-full:hover {
+    background-color: #9902028c;
+    color: #efefef
+}
+
+.ap-btn-full:hover,
+.ap-btn-full:active,
+.ap-btn-full:hover {
+    background-color: #9902028c;
+    color: #efefef
+}

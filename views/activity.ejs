@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/browse.css">
+    <link rel="stylesheet" href="css/activity.css">
+</head>
+
+<body>
+
+    <%- include ("header") %>
+        <h1 id="title">Activity</h1>
+        <hr id="hr-out">
+
+        <div id="list-box">
+            <div id="white-box">
+                <% if(noActivity){ %>
+                    <h2 id="noActivity">You have no check-in record</h2>
+                    <% } else { %>
+                        <table style="margin-left: auto; margin-right: auto; width:55%">
+                            <tr>
+                                <th>Food Bank's Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <% for(var i=0; i < set1.length; i++){ %>
+                                <% for(var j=0; j < set2.length; j++){ %>
+                                    <% if(set1[i].foodbank_id == set2[j].foodbank_id){ %>
+                                        <tr>
+                                            <td>
+                                                <%=set2[j].foodbank_name%>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <%=date[i]%>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <%=time[i]%>
+                                            </td>
+                                        </tr>
+                                        <% break } %>
+                                            <% } %>
+                                                <% } %>
+                        </table>
+                        <% } %>
+            </div>
+        </div>
+
+        <%- include ("footer") %>
+</body>
+
+</html>

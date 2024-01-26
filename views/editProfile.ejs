@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJmVvYRBxp7udRyPI4pE4pn25PbW67qFM&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="/js/map.js"></script>
+    <script src="/js/editUser.js"></script>
+
+</head>
+
+<body>
+    <%- include ("header") %>
+        <div class="title clearfix">
+            <p><span>Edit Profile</span></p>
+        </div>
+
+        <form action="/editProfile" method="POST">
+            <div class="profile-box">
+
+                <div class="left">
+                    <div class="picture-box">
+                        <div class="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="input-data">
+                        <h1>
+                            <%=profile_arr[0].user_name%>
+                        </h1>
+                        <div class="item">
+                            <h2>Name: </h2>
+                            <input class="input" type="text" name="name" value="<%=profile_arr[0].user_name%>">
+                        </div>
+                        <div class="item">
+                            <h2>Email: </h2>
+                            <input type="text" class="input" name="email" value="<%=profile_arr[0].user_email%>">
+                        </div>
+                        <div class="item">
+                            <h2>Phone Number: </h2>
+                            <input type="text" class="input" name="phone" value="<%=profile_arr[0].user_phone%>">
+                        </div>
+                        <div class="item">
+                            <h2>Username: </h2>
+                            <input type="text" class="input" name="username" value="<%=profile_arr[0].user_username%>">
+                        </div>
+                        <div class="item">
+                            <h2>Password: </h2>
+                            <input type="password" class="input" name="password" value="<%=profile_arr[0].user_password%>" id="id_password">
+                            <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                        </div>
+                        <input type="hidden" id="newAddress" name="newAddress" value="">
+                        <input type="hidden" id="newLat" name="newLat" value="">
+                        <input type="hidden" id="newLong" name="newLong" value="">
+
+                        <div class="profile-button">
+                            <button type="button" class="btn btn-full save-btn" id="editAddress">Edit Address</button>
+                            <input type="submit" class="btn btn-full save-btn" id="submit-button" value="Save Profile" onclick="saveClicked()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        </div>
+
+
+        <div class="blur-background">
+            <div class="card-container">
+                <div class="close">+</div>
+                <div class="panel">
+                    <form id="mapForm">
+                        <div>
+                            <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
+                            <span class="sb-title">Address Selection</span>
+                            <input class="from" type="text" value="User" id="from" name="from" readonly/>
+                        </div>
+                        <p>
+                            <input class="textInput" type="text" placeholder="Address" id="location" name="location" required/>
+                        </p>
+                        <p>
+                            <input class="textInput" type="text" placeholder="Apt, Suite, etc (optional)" />
+                        </p>
+                        <p>
+                            <input class="textInput" type="text" placeholder="City" id="locality" name="locality" />
+                        </p>
+                        <div class="half-input-container">
+                            <p><input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1" name="administrative_area_level_1" /></p>
+                            <p><input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code" name="postal_code" /></p>
+                        </div>
+                        <p>
+                            <input class="textInput" type="text" placeholder="Country" id="country" name="country" required/>
+                        </p>
+                        <input type="button" id="confirm-button" class="mapButton mapButton-full" value="Confirm" disabled/>
+                        <icon class="far fa-check-circle fa-lg" id="tick"></icon>
+                        <div class="latlong-box">
+                            <input class="latlong" type="text" placeholder="" id="lat" name="lat" readonly/>
+                            <input class="latlong" type="text" placeholder="" id="long" name="long" readonly/>
+                        </div>
+                    </form>
+                </div>
+                <div class="map" id="map"></div>
+            </div>
+        </div>
+
+        <%- include ("footer") %>
+
+            <script>
+                const togglePassword = document.querySelector('#togglePassword');
+                const password = document.querySelector('#id_password');
+
+                togglePassword.addEventListener('click', function(e) {
+                    // toggle the type attribute
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    // toggle the eye slash icon
+                    this.classList.toggle('fa-eye-slash');
+                });
+                
+                function saveClicked() {
+
+                    $.ajax({
+                        url: '/editProfile',
+                        type: "POST",
+                        data: {
+                            
+                        },
+                        success: function() {
+                            swal("Your profile changes is saved successfully! Please refresh the profile page. ");
+                        },
+                        error: function(jqXHR, textStatus, err) {
+                            alert('text status ' + textStatus + ', err ' + err)
+                        }
+                    });
+                }
+            
+            </script>
+
+
+</body>
+
+</html>

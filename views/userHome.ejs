@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/userHome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+    <%- include ("header") %>
+        <div class="clearfix header-box">
+            <img class="header-img" src="img/homeHeader1.png" alt="Background">
+            <div class="header-img-text ">
+                <h1 class="animate__animated animate__slideInDown">Scroll Down</h1>
+                <i class="fas fa-angle-double-down animate__animated animate__slideInDown"></i>
+            </div>
+        </div>
+        <div class="se-container">
+            <div class="top-padding">
+                <h1 class="right">About Us<img src="img/homePhone.png" class="imageClass"></h1>
+
+            </div>
+            <div class="se-slope1 clearfix">
+                <article class="se-content">
+                    <p>ChilliSos is a non-profit, charitable organization that distributes food to those who have difficulty in purchasing food to avoid hunger.</p>
+                    <br>
+                    <p>The ability of food banks to provide people in need with essential food and commodities depends mostly on donations from individuals and other charitable organizations. It is truly a product of collective effort.</p>
+                    <br>
+                    <p>Food banks collect food from several sources like:</p>
+                    <p>-First-hand production and farmers who donate fruits, vegetables,milk,etc.</p>
+                    <p>-Companies in the food industry provide all kinds of products: dry, frozen, refrigerated, canned, etc. Like Walmart, Sysco, and other local grocery stores.
+                    </p>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+
+            <div class="top-padding">
+                <img src="img/homeRead.png" class="imageClass left">
+                <h1 class="left">Food Banks </h1>
+            </div>
+            <div class="se-slope2 clearfix">
+                <article class="se-content">
+                    <p>Click here to see all available Food Banks!</p>
+                    <button type="button" class="btn btn-full">View All Food Banks</button>
+                    <button type="button" class="btn btn-full">View Your Own Food Banks</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+            <div class="top-padding">
+                <h1 class="right">Profile<img src="img/homeComp.png" class="imageClass"></h1>
+            </div>
+            <div class="se-slope1 clearfix">
+                <article class="se-content">
+                    <p>Click here to view or edit your profile!</p>
+                    <button type="button" class="btn btn-full">View Profile</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+            <div class="top-padding">
+                <h1 class="left">Activity<img src="img/homeListen.png" class="imageClass left"></h1>
+
+            </div>
+            <div class="se-slope2 clearfix">
+                <article class="se-content">
+                    <p>Click here to view your activity!</p>
+                    <button type="button" class="btn btn-full">View Activity</button>
+                </article>
+                <div class="borderDark"></div>
+                <div class="borderLight"></div>
+            </div>
+        </div>
+        <%- include ("footer") %>
+</body>
+
+</html>

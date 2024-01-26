@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-jKFOTiExF1_6T8WMxF5gBr2m9F82kO8&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/editFoodBank.js"></script>
+    <link rel="stylesheet" href="css/addFoodBank.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/js/map.js"></script>
+    <title>Add Food Bank</title>
+</head>
+
+<body>
+    <h1 id="title">Add Food Bank</h1>
+    <hr id="hr">
+
+    <div id="box">
+        <div id="white-box">
+            <form method="POST" action="/addFB" id="addForm">
+                <p><label for="name">Food Bank Name:</label>
+                    <input type="text" class="fbDetails" name="foodbank_name" required></p>
+                <p><label for="address">Address:</label>
+                    <input type="text" class="fbDetails" name="address" id="address" style="border-bottom: 0px;" readonly></p>
+                <button type="button" id="searchMapButton" class="address-btn address-btn-full">Click to add address</button>
+                <p><label for="contact">Contact:</label>
+                    <input type="tel" class="fbDetails" name="phone" pattern="[0-9]{3}-[0-9]{7-9}" style="width: 300px;" required></p>
+                <p class="time">
+                    <label for="appt" name="open_time">Open Time:</label>
+                    <input type="time" class="time-picker" name="open_time" required></p>
+                <p class="time">
+                    <label for="appt" name="close_time">Close Time:</label>
+                    <input type="time" class="time-picker" name="close_time" required></p>
+                <p><label>Halal:</label>
+                    <label class="switch">
+                <input type="checkbox" name="halal" required>
+                <span class="slider round"></span>
+            </label></p>
+                <input type="submit" id="saveBtn" class="btn btn-full" value="Submit" name="saveBtn">
+                <input type="hidden" id="newAddress" name="newAddress" value="">
+                <input type="hidden" id="newLat" name="newLat" value="">
+                <input type="hidden" id="newLong" name="newLong" value="">
+            </form>
+        </div>
+    </div>
+
+    <div class="blur-background">
+        <div class="card-container">
+            <div class="close">+</div>
+            <div class="panel">
+                <form id="mapForm">
+                    <div>
+                        <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
+                        <span class="sb-title">Address Selection</span>
+                        <input class="from" type="text" value="Foodbank" id="from" name="from" readonly/>
+                    </div>
+                    <input class="textInput" type="text" placeholder="Address" id="location" name="location" required/>
+                    <input class="textInput" type="text" placeholder="Apt, Suite, etc (optional)" />
+                    <input class="textInput" type="text" placeholder="City" id="locality" name="locality" />
+                    <div class="half-input-container">
+                        <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1" name="administrative_area_level_1" />
+                        <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code" name="postal_code" />
+                    </div>
+                    <input class="textInput" type="text" placeholder="Country" id="country" name="country" required/>
+                    <input type="button" id="confirm-button" class="mapButton mapButton-full" value="Save" disabled/>
+                    <icon class="far fa-check-circle fa-lg" id="tick"></icon>
+                    <div class="latlong-box">
+                        <input class="latlong" type="text" placeholder="" id="lat" name="lat" readonly/>
+                        <input class="latlong" type="text" placeholder="" id="long" name="long" readonly/>
+                    </div>
+                </form>
+            </div>
+            <div class="map" id="map"></div>
+        </div>
+    </div>
+
+    <script>
+        /*
+                function checkedBox() {
+                    var boxes = document.getElementsByName('halal');
+
+                    for (var i = 1; i <= boxes.length; i++) {
+                        box = boxes[i];
+
+                        if (box.checked) {
+                            halal == "Y";
+                        } else {
+                            halal == "N";
+                        }
+                    }
+                }*/
+        /*
+        $(document).ready(function() {
+            $('#addForm').on('submit', function(e) {
+                e.preventDefault();
+                var data = $('#addForm').serialize();
+
+                $.ajax({
+                    url: '/addFB',
+                    type: "POST",
+                    data: data,
+                    success: function(data) {
+                        swal("Done!", "Your food bank request is submitted.", "success");
+                    },
+                    error: function(jqXHR, textStatus, err) {
+                        alert('text status ' + textStatus + ', err ' + err)
+                    }
+                });
+            });
+        });
+        */
+    </script>
+
+</body>
+
+</html>

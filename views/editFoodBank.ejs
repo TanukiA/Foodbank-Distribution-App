@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-jKFOTiExF1_6T8WMxF5gBr2m9F82kO8&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+    <script src="/js/map.js"></script>
+    <script type="text/javascript" src="/js/editFoodBank.js"></script>
+    <link rel="stylesheet" href="/css/editFoodBank.css">
+</head>
+
+<body>
+
+    <h1 id="title">Edit My Food Bank</h1>
+    <hr id="hr">
+
+    <div id="box">
+        <div id="white-box">
+            <form method="POST" id="editForm">
+                <input type="hidden" id="foodbank_id" name="foodbank_id" value="<%=foodbank_id%>">
+                <p><label for="name">Name:</label>
+                    <input type="text" name="foodbank_name" class="fbDetails" value="<%=foodbank_arr[0].foodbank_name%>" placeholder="Enter food bank name" required></p>
+                <p><label for="address">Address:</label>
+                    <input type="text" class="fbDetails" name="address" id="address" value="<%=location_arr[0].location_address%>" style="border-bottom: 0px;" readonly></p>
+                <button type="button" id="searchMapButton" class="address-btn address-btn-full">Click to edit address</button>
+                <p><label for="contact">Contact:</label>
+                    <input type="tel" name="phone" class="fbDetails" pattern="[0-9]{3}-[0-9]{7-9}" value="<%=foodbank_arr[0].foodbank_contact%>" style="width: 300px;" placeholder="Enter contact number" required></p>
+                <p class="time">
+                    <label for="appt" name="open_time">Open Time:</label>
+                    <input type="time" class="time-picker" name="open_time" value="<%=foodbank_arr[0].foodbank_open_time%>" required></p>
+                <p class="time">
+                    <label for="appt" name="close_time">Close Time:</label>
+                    <input type="time" class="time-picker" name="close_time" value="<%=foodbank_arr[0].foodbank_close_time%>" required></p>
+                <p><label>Halal:</label>
+                    <label class="switch">
+                <input type="checkbox" name="halal" value="true" <%- foodbank_arr[0].foodbank_food_halal == "Y" ? "checked" : "" %>>
+                <span class="slider round"></span>
+            </label></p>
+
+                <p><label>Food List:</label></p>
+
+                <div id="foodlist-box">
+                    <% for(var i=0; i<food_names.length; i++){ %>
+                        <table class="food-table">
+                            <tr>
+                                <td>
+                                    <p class="removeFoodDiv">
+                                        <input type="button" value="-" class="remove-food" onclick="removeRow(this)">
+                                    </p>
+                                </td>
+                                <td>
+                                    <label for="foodName" style="margin: 4px">Name:</label>
+                                    <input type="text" name="food_name[]" class="fbDetails" style="width: 440px; padding: 8px; margin: 7px;" value="<%=food_names[i]%>" placeholder="Enter food name" required>
+                                </td>
+                                <td>
+                                    <select name="food_category[]" value="<%=food_categories[i]%>" style="margin-top: 25px;" required>
+                            <option selected disabled hidden>Select Food Category</option>
+                            <option <%- food_categories[i]=="Rice" ? "selected" : "" %> value="Rice">Rice</option>
+                            <option <%- food_categories[i]=="Bread" ? "selected" : "" %> value="Bread">Bread</option>
+                            <option <%- food_categories[i]=="Can Food" ? "selected" : "" %> value="Can Food">Canned Food</option>
+                            <option <%- food_categories[i]=="Biscuit" ? "selected" : "" %> value="Biscuit">Biscuit</option>
+                            <option <%- food_categories[i]=="Frozen Food" ? "selected" : "" %> value="Frozen Food">Frozen Food</option>
+                            <option <%- food_categories[i]=="Noodles" ? "selected" : "" %> value="Noodles">Noodles</option>
+                            <option <%- food_categories[i]=="Baby Supplies" ? "selected" : "" %> value="Baby Supplies">Baby Supplies</option>
+                            <option <%- food_categories[i]=="Vegetables" ? "selected" : "" %> value="Vegetables">Vegetables</option>
+                            <option <%- food_categories[i]=="Drink" ? "selected" : "" %> value="Drink">Drink</option>
+                        </select>
+                                </td>
+                                <td>
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="-" class="minus">
+                                        <input type="number" step="1" min="1" max="" name="food_quantity[]" value="<%=food_quantities[i]%>" class="input-text qty text" size="4" required>
+                                        <input type="button" value="+" class="plus">
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                </div>
+
+                <div class="addFoodDiv">
+                    <input type="button" value="+" class="add-food" onclick="addRow()">
+                </div>
+                <input type="hidden" id="newAddress" name="newAddress" value="">
+                <input type="hidden" id="newLat" name="newLat" value="">
+                <input type="hidden" id="newLong" name="newLong" value="">
+                <input type="submit" id="saveBtn" class="btn btn-full" value="Save" name="saveBtn">
+
+            </form>
+            <form action="/viewOwnFoodBank" method="GET">
+                <button type="submit" class="btn btn-full">Back to My Food Bank</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="blur-background">
+        <div class="card-container">
+            <div class="close">+</div>
+            <div class="panel">
+
+                <div>
+                    <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
+                    <span class="sb-title">Address Selection</span>
+                    <input class="from" type="text" value="Foodbank" id="from" name="from" readonly/>
+                </div>
+                <input class="textInput" type="text" placeholder="Address" id="location" name="location" required/>
+                <input class="textInput" type="text" placeholder="Apt, Suite, etc (optional)" />
+                <input class="textInput" type="text" placeholder="City" id="locality" name="locality" />
+                <div class="half-input-container">
+                    <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1" name="administrative_area_level_1" />
+                    <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code" name="postal_code" />
+                </div>
+                <input class="textInput" type="text" placeholder="Country" id="country" name="country" required/>
+                <input type="button" id="confirm-button" class="mapButton mapButton-full" value="Confirm" disabled/>
+                <icon class="far fa-check-circle fa-lg" id="tick"></icon>
+                <div class="latlong-box">
+                    <input class="latlong" type="text" placeholder="" id="lat" name="lat" readonly/>
+                    <input class="latlong" type="text" placeholder="" id="long" name="long" readonly/>
+                </div>
+
+            </div>
+            <div class="map" id="map"></div>
+        </div>
+    </div>
+
+    <script>
+        function addRow() {
+            var box = document.getElementById('foodlist-box');
+            const table = document.createElement('table');
+            table.classList.add('food-table');
+
+            table.innerHTML = `
+                <tr>
+                    <td>
+                        <p class="removeFoodDiv">
+                            <input type="button" value="-" class="remove-food" onclick="removeRow(this)">
+                        </p>
+                    </td>
+                    <td>
+                        <label for="foodName" style="margin: 4px">Name:</label>
+                        <input type="text" id="food-name" name="food_name[]" class="fbDetails" style="width: 440px; padding: 8px; margin: 7px;" placeholder="Enter food name" required>
+                    </td>
+                    <td>
+                        <select name="food_category[]" style="margin-top: 25px;" required>
+                            <option selected disabled hidden>Select Food Category</option>
+                            <option value="Rice">Rice</option>
+                            <option value="Bread">Bread</option>
+                            <option value="Can Food">Canned Food</option>
+                            <option value="Biscuit">Biscuit</option>
+                            <option value="Frozen Food">Frozen Food</option>
+                            <option value="Noodles">Noodles</option>
+                            <option value="Baby Supplies">Baby Supplies</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Drink">Drink</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="quantity buttons_added">
+                            <input type="button" value="-" class="minus">
+                            <input type="number" step="1" min="1" max="" name="food_quantity[]" value="1" class="input-text qty text" size="4" required>
+                            <input type="button" value="+" class="plus">
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            box.appendChild(table);
+        }
+
+        function removeRow(element) {
+            var box = document.getElementById('foodlist-box');
+            $(element).parents(".food-table").remove();
+        }
+
+        $(document).ready(function() {
+
+            $('#editForm').on('submit', function(e) {
+                e.preventDefault();
+                var data = $('#editForm').serialize();
+
+                $.ajax({
+                    url: '/updateFoodBank',
+                    type: "POST",
+                    data: data,
+                    success: function(data) {
+                        if (data.status == "Success") {
+                            swal("Done!", "Your edit have been saved.", "success");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, err) {
+                        alert('text status ' + textStatus + ', err ' + err);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

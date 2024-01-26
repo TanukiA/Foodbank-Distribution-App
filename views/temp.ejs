@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>Home Page</h1>
+    <h3>
+        Testing Session: Hi
+        <%= username %>, user ID
+            <%= userId %>
+    </h3>
+    <form action="/calDistance" method="POST">
+        <input class="latlong" type="text" placeholder="" id="lat" name="lat" value="2.92459" readonly/>
+        <input class="latlong" type="text" placeholder="" id="long" name="long" value="101.65626" readonly/>
+        <input type="submit" id="submit" value="calculate coordinate" />
+    </form>
+    <a href="userBrowse">Go to userBrowse</a> <br>
+    <a href="view-check-in">Go to view-check-in</a> <br>
+    <a href="viewOwnFoodBank">Go to viewOwnFoodBank</a> <br>
+    <a href="addFoodBank">Go to addFoodBank</a> <br>
+    <a href="notification">Go to notification</a> <br>
+    <a href="request">Go to request</a> <br>
+    <a href="userlist">Go to userlist</a> <br>
+    <a href="adminBrowse">Go to adminBrowse</a> <br>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: 30px;
+}
+
+table th {
+    color: #627964;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #627964;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+table td {
+    color: #627964;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    border: 1px solid #627964;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+#noActivity {
+    color: #627964;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-text-stroke: 1.5px #627964;
+    font-size: 25px;
+    font-weight: 300;
+    text-align: center;
+}

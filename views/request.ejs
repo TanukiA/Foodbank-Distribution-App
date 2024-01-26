@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/request.js"></script>
+    <link rel="stylesheet" href="css/request.css" />
+    <title>Manage Request</title>
+</head>
+
+<body>
+    <%- include ("adminHeader") %>
+        <h1 id="title">Manage Request</h1>
+        <hr id="hr-out">
+
+        <div id="request-box">
+            <div class="table-responsive" id="request">
+                <% if(data1.length==0){ %>
+                    <h4 id="notFound">No request at the moment.</h4>
+                    <% } else { %>
+                        <% for(var i = 0; i < data1.length; i++){ %>
+
+                            <table class="table table-bordered align-middle" id="request-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Attribute</th>
+                                        <th scope="col">Details</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>User</td>
+                                        <% for(var j = 0; j < data2.length; j++){ %>
+                                            <% if(data1[i].user_id == data2[j].user_id){ %>
+                                                <td>
+                                                    <%= data2[j].user_name%>
+                                                </td>
+                                                <% } %>
+                                                    <% } %>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Food Bank Name</td>
+                                        <td id="request_name">
+                                            <%= data1[i].request_name%>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Food Bank Contact</td>
+                                        <td id="request_contact">
+                                            <%= data1[i].request_contact%>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Food Bank Location</td>
+                                        <td id="request_location">
+                                            <%= data3[i].location_address%>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Food Halal</td>
+                                        <% if(data1[i].request_food_halal == 'Y'){ %>
+                                            <td id="request_food_halal">Yes</td>
+                                            <% }else{ %>
+                                                <td id="request_food_halal">No</td>
+                                                <% } %>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Open Time</td>
+                                        <td id="request_open_time">
+                                            <%= data1[i].request_open_time%>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Close Time</td>
+                                        <td id="request_close_time">
+                                            <%= data1[i].request_close_time%>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <!-- <form action="/declineRequest" method="POST"> -->
+                            <button type="submit" id="<%=data1[i].request_id%>" class="dc-btn dc-btn-full" onclick="declineClicked(this.id)">Decline Request</button>
+                            <button type="submit" id="<%=data1[i].request_id%>" class="ap-btn ap-btn-full" onclick="approveClicked(this.id)">Approve Request</button>
+
+                            <% } %>
+                                <% } %>
+            </div>
+        </div>
+        <%- include ("footer") %>
+
+            <script>
+                //fix header
+                document.getElementById("logo-name").style.color = "#900000";
+                document.getElementById("logo-name").style.fontFamily = "Montserrat,sans-serif";
+                document.getElementById("logo-name").style.fontSize = "145%";
+                document.getElementById("logo-name").style.fontWeight = "700";
+
+                //fix footer
+                document.getElementById("footerH2").style.color = "#FFFFFF";
+                document.getElementById("footerH2").style.fontSize = "20px";
+                document.getElementById("footerH2").style.fontSize = "145%";
+                document.getElementById("footerH2").style.fontWeight = "700";
+
+                for (var x = 1; x < 4; x++) {
+                    document.getElementById("footerH3-"+x).style.color = "#FFFFFF";
+                    document.getElementById("footerH3-"+x).style.fontSize = "120%";
+                    document.getElementById("footerH3-"+x).style.fontWeight = "700";
+                }
+
+                for (var x = 1; x < 10; x++) {
+                    document.getElementById("footerP"+x).style.lineHeight = "0.5";
+                }
+
+                document.getElementById("footer-box").style.background = "#900000";
+                document.getElementById("footer-foot-box").style.background = "#DA6E6E";
+
+                function approveClicked(request_id) {
+                    swal({
+                            title: "Are you sure?",
+                            text: "Add this food bank to the system?",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                $.ajax({
+                                    url: '/approveRequest',
+                                    type: "POST",
+                                    data: {
+                                        request_id: request_id
+                                    },
+                                    success: function(data) {
+                                        swal({
+                                            text: "Food bank request has been approved.",
+                                            icon: "success",
+                                        }).then(function(data) {
+                                            location.reload(true);
+                                        });
+                                    },
+                                    error: function(jqXHR, textStatus, err) {
+                                        alert('text status ' + textStatus + ', err ' + err);
+                                    }
+                                });
+                            }
+                        })
+                }
+
+                function declineClicked(request_id) {
+                    swal({
+                            title: "Are you sure?",
+                            text: "Once declined, food bank request will be permenantly deleted.",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                $.ajax({
+                                    url: '/declineRequest',
+                                    type: "POST",
+                                    data: {
+                                        request_id: request_id
+                                    },
+                                    success: function(data) {
+                                        swal({
+                                            text: "Food bank request has been declined.",
+                                            icon: "success",
+                                        }).then(function(data) {
+                                            location.reload(true);
+                                        });
+                                    },
+                                    error: function(jqXHR, textStatus, err) {
+                                        alert('text status ' + textStatus + ', err ' + err);
+                                    }
+                                });
+                            }
+                        })
+                }
+            </script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="background-box">
+        <div class="logo-box">
+            <h2>ChilliSos
+                <icon class="fas fa-pepper-hot"></icon>
+            </h2>
+        </div>
+        <div class="login-box">
+            <div class="left-side">
+                <img src="../img/login.png" alt="login's sticker">
+            </div>
+            <div class="right-side">
+                <div class="form-box">
+                    <form action="/loginPost" method="POST">
+                        <div class="admin-box">
+                            <h2>Log In</h2>
+                            <div class="admin-toggle">
+                                <h4>Log in as Admin</h4>
+                                <input type="checkbox" id="adminBool" name="adminBool" class="checkbox" />
+                                <label for="adminBool" class="toggle">
+                            </div>
+                        </div>
+                        
+                        <div class="input-box one">
+                            <div class="icon">
+                                <icon class="fas fa-user"></icon>
+                            </div>
+                            <div>
+                                <h5>Username</h5>
+                                <input class="input" type="text" name="username">
+                            </div>
+                        </div>
+
+                        <div class="input-box two">
+                            <div class="icon">
+                                <icon class="fas fa-lock"></icon>
+                            </div>
+                            <div>
+                                <h5>Password</h5>
+                                <input class="input" type="password" name="password">
+                            </div>
+                        </div>
+
+                        <input type="submit" id="submit" class="btn btn-full" value="Login" />
+                
+                        <h6>Do not have an account yet?</h6>
+                        <a href="register">Click Here to Register</a>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if (typeof errorMessage != 'undefined' && errorMessage !== null) { %>
+        <div class="blur-background">
+            <div class="pop-box">
+                <div class="close">+</div>
+                <h3>- Error -</h3>
+                <p>
+                    <%= errorMessage %>
+                </p>
+            </div>
+        </div>
+        <script>
+            document.querySelector('.blur-background').style.display = 'flex';
+        </script>
+        <% } %>
+        <% if (typeof successMessage != 'undefined') { %>
+            <div class="blur-background">
+                <div class="pop-box">
+                    <div class="close">+</div>
+                    <h3>- Congrats -</h3>
+                    <p>You haven been register successfully</p>
+                </div>
+            </div>
+            <script>
+                document.querySelector('.blur-background').style.display = 'flex';
+            </script>
+            <% } %>
+    <script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.divOuter{
+  display: inline;
+}
+
+select{
+  
+  padding: 10px 22px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid #627964;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.icon{
+  position: relative;
+  top: 3px;
+  left: 18px;
+  margin: 10px 25px;
+  display: inline-block;
+  box-sizing: border-box;
+}

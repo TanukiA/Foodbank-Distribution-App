@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/filter.js"></script>
+    <script type="text/javascript" src="js/multi-select.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/browse.css">
+</head>
+
+<body>
+    <%- include ("header") %>
+        <h1 id="title">My Food Bank</h1>
+        <hr id="hr-out">
+
+        <div id="list-box">
+            <% if(notFound){ %>
+                <h2 id="notFound">You have no own food bank yet. Create one?</h2>
+                <% } else { %>
+                    <% for(var i = 0; i < foodbank_arr.length; i++){ %>
+                        <div id="foodbank">
+                            <h2 class="fb-name">
+                                <%=foodbank_arr[i].foodbank_name%>
+                            </h2>
+                            <hr id="hr-in">
+                            <p class="sub-info">Address:</p>
+                            <% for(var j=0; j < location_arr.length; j++){ %>
+                                <% if(location_arr[j].location_id == foodbank_arr[i].location_id){ %>
+                                    <p class="sub-content">
+                                        <%=location_arr[j].location_address%>
+                                    </p>
+                                    <% } 
+            } %>
+                                        <table>
+                                            <tr>
+                                                <td style="min-width:250px">
+                                                    <p class="sub-info">Food Bank's Contact:</p>
+                                                    <p class="sub-content">
+                                                        <%=foodbank_arr[i].contact%>
+                                                    </p>
+                                                </td>
+                                                <td style="min-width:250px">
+                                                    <p class="sub-info">Operation Time:</p>
+                                                    <p class="sub-content">
+                                                        <%=foodbank_arr[i].open_time%> -
+                                                            <%=foodbank_arr[i].close_time%>
+                                                    </p>
+                                                </td>
+                                                <td style="min-width:250px">
+                                                    <p class="sub-info">Halal:</p>
+                                                    <% if(foodbank_arr[i].foodbank_food_halal == 'Y'){ %>
+                                                        <p class="sub-content">Yes</p>
+                                                        <% }else{ %>
+                                                            <p class="sub-content">No</p>
+                                                            <% } %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p class="sub-info">Food List:</p>
+                                        <table class="food-table">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Category</th>
+                                                <th>Quantity</th>
+                                            </tr>
+                                            <% for(var k=0; k < food_arr.length; k++){ %>
+                                                <% if(food_arr[k].foodbank_id == foodbank_arr[i].foodbank_id){ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%=food_arr[k].food_name%>
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            <%=food_arr[k].food_category%>
+                                                        </td>
+                                                        <td style="text-align: center">
+                                                            <%=food_arr[k].food_quantity%>
+                                                        </td>
+                                                    </tr>
+                                                    <% } 
+            } %>
+                                        </table>
+                                        <p></p>
+                                        <button type="submit" class="fb-btn fb-btn-full" id="<%=foodbank_arr[i].foodbank_id%>" onclick="deleteClicked(this.id)">Delete Food Bank</button>
+                                        <form action="/editFoodBank/<%=foodbank_arr[i].foodbank_id%>" method="POST">
+                                            <button type="submit" class="fb-btn fb-btn-full">Edit Food Bank</button>
+                                        </form>
+                        </div>
+                        <p></p>
+                        <% } %>
+                            <% } %>
+                                <!--PUT ADD FOOD BANK REQUEST HERE-->
+                                <div class="addFoodbankDiv">
+                                    <a class="btn" href="addFoodBank"><input type="button" value="+" class="add-foodbank"></a>
+                                </div>
+        </div>
+        <%- include ("footer") %>
+
+            <script>
+                function deleteClicked(foodBankID) {
+
+                    swal({
+                            title: "Are you sure?",
+                            text: "Once deleted, food bank record will be removed completely.",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                $.ajax({
+                                    url: '/deleteFoodBank',
+                                    type: "POST",
+                                    data: {
+                                        foodBankID: foodBankID
+                                    },
+                                    success: function(data) {
+                                        swal(data.foodbank_name + " has been deleted.", {
+                                            icon: "success",
+                                        }).then(function() {
+                                            location.reload(true);
+                                        });
+                                    },
+                                    error: function(jqXHR, textStatus, err) {
+                                        alert('text status ' + textStatus + ', err ' + err);
+                                    }
+                                });
+                            }
+                        });
+                }
+            </script>
+
+</body>
+
+</html>

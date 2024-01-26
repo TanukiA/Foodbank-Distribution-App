@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <title>Footer</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-bar">
+            <div id="logo" class="logo">
+                <h2 id="logo-font">ChilliSos<i class="fas fa-pepper-hot"></i></h2>
+            </div>
+            <div class="list-bar">
+                <ul class="main-nav">
+                    <li><a class="list-item" href="/userHome">Home</a></li>
+                    <li><a class="list-item" href="/userBrowse">All Food Banks</a></li>
+                    <li><a class="list-item" href="/profile">Profile</a></li>
+                    <li><a class="list-item" href="/viewOwnFoodBank">My FoodBanks</a></li>
+                    <li><a class="list-item" href="/view-check-in">Activity</a></li>
+                    <li><a class="list-item" href="/notification">Notification</a></li>
+                    <li><a class="list-item" href="/" onclick="if (confirm('Are you sure you want to Logout?')){return true;}else{event.stopPropagation(); event.preventDefault();};">Logout</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <script type="text/javascript">
+        var elems = document.getElementsById('logout');
+        var confirmIt = function(e) {
+            if (!confirm('Are you sure?')) e.preventDefault();
+        };
+        for (var i = 0, l = elems.length; i < l; i++) {
+            elems[i].addEventListener('click', confirmIt, false);
+        }
+    </script>
+
+</body>
+
+</html>

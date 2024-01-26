@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/multi-select/popper.js"></script>
+    <script src="js/multi-select/bootstrap.min.js"></script>
+    <script src="js/multi-select/bootstrap-multiselect.js"></script>
+    <script src="js/multi-select/main.js"></script>
+    <script src="js/viewMap.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/filter.css">
+    <link rel="stylesheet" href="css/multi-select.css">
+    <link rel="stylesheet" href="css/adminBrowse.css">
+</head>
+
+<body>
+    <%- include ("adminHeader") %>
+        <div id="map"></div>
+
+        <h1 id="title">Food Banks</h1>
+        <hr id="hr-out">
+
+        <div id="map-box">
+            <form action="/adminSearch" method="POST">
+
+                <div style="display: inline-block">
+                    <p><img src="img/sort.svg" alt="filter" width="21" height="26" class="icon">
+                        <select name="sort">
+            <option selected hidden value="all">Sort by</option>
+            <option value="foodbank_name">Food Bank Name</option>
+            <option value="all">No Sort</option>
+          </select></p>
+                </div>
+                <div style="display: inline-block">
+                    <p><img src="img/filter.svg" alt="filter" width="21" height="26" class="icon">
+                        <select name="food_type">
+            <option selected hidden value="all">Select Food Type</option>
+            <option value="Y">Halal</option>
+            <option value="N">Non-Halal</option>
+            <option value="all">Halal and Non-Halal</option>
+          </select></p>
+                </div>
+
+                <div class="col-md-8 col-lg-5 d-flex justify-content-center align-items-center" style="margin: 0% 0% 1.5% 2%;">
+                    <div class="d-flex text-left align-items-center w-100">
+                        <select id="multiple-checkboxes" name="food_category" multiple="multiple">
+                <option value="Rice">Rice</option>
+                <option value="Bread">Bread</option>
+                <option value="Can Food">Canned Food</option>
+                <option value="Biscuit">Biscuit</option>
+                <option value="Frozen Food">Frozen Food</option>
+                <option value="Noodles">Noodles</option>
+                <option value="Baby Supplies">Baby Supplies</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Drink">Drink</option>
+              </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="search-btn search-btn-full">Search</button>
+            </form>
+        </div>
+
+        <div id="list-box">
+            <% for(var i = 0; i < set1.length; i++){ %>
+                <div id="foodbank">
+                    <h2 class="fb-name">
+                        <%=set1[i].foodbank_name%>
+                    </h2>
+                    <hr id="hr-in">
+                    <p class="sub-info">Address:</p>
+                    <% for(var j=0; j < set2.length; j++){ %>
+                        <% if(set2[j].location_id == set1[i].location_id){ %>
+                            <div class="address-box">
+                                <p class="sub-content">
+                                    <%=set2[j].location_address%>
+                                </p>
+                                <a class="coordinate">
+                                    <%=coordinate[j]['ST_astext(location_point)']%>
+                                </a>
+                            </div>
+                            <% } 
+            } %>
+
+                                <table>
+                                    <tr>
+                                        <td style="min-width:250px">
+                                            <p class="sub-info">Food Bank's Contact:</p>
+                                            <p class="sub-content">
+                                                <%=set1[i].contact%>
+                                            </p>
+                                        </td>
+                                        <td style="min-width:250px">
+                                            <p class="sub-info">Operation Time:</p>
+                                            <p class="sub-content">
+                                                <%=set1[i].open_time%> -
+                                                    <%=set1[i].close_time%>
+                                            </p>
+                                        </td>
+                                        <td style="min-width:250px">
+                                            <p class="sub-info">Halal:</p>
+                                            <% if(set1[i].foodbank_food_halal == 'Y'){ %>
+                                                <p class="sub-content">Yes</p>
+                                                <% }else{ %>
+                                                    <p class="sub-content">No</p>
+                                                    <% } %>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p class="sub-info">Food List:</p>
+                                <table class="food-table">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                    <% for(var k=0; k < set3.length; k++){ %>
+                                        <% if(set3[k].foodbank_id == set1[i].foodbank_id){ %>
+                                            <tr>
+                                                <td>
+                                                    <%=set3[k].food_name%>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <%=set3[k].food_category%>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <%=set3[k].food_quantity%>
+                                                </td>
+                                            </tr>
+                                            <% } 
+                } %>
+                                </table>
+                                <button type="submit" class="fb-btn fb-btn-full" id="<%=set1[i].foodbank_id%>" onclick="deleteClicked(this.id)">Delete Food Bank</button>
+                </div>
+                <p></p>
+                <% } %>
+        </div>
+        <%- include ("footer") %>
+
+            <script>
+                //fix header
+                document.getElementById("logo-name").style.color = "#900000";
+                document.getElementById("logo-name").style.fontFamily = "Montserrat,sans-serif";
+                document.getElementById("logo-name").style.fontSize = "145%";
+                document.getElementById("logo-name").style.fontWeight = "700";
+
+                //fix footer
+                document.getElementById("footerH2").style.color = "#FFFFFF";
+                document.getElementById("footerH2").style.fontSize = "20px";
+                document.getElementById("footerH2").style.fontSize = "160%";
+                document.getElementById("footerH2").style.fontWeight = "700";
+
+                for (var x = 1; x < 4; x++) {
+                    document.getElementById("footerH3-"+x).style.color = "#FFFFFF";
+                    document.getElementById("footerH3-"+x).style.fontSize = "130%";
+                    document.getElementById("footerH3-"+x).style.fontWeight = "700";
+                }
+
+                for (var x = 1; x < 10; x++) {
+                    document.getElementById("footerP"+x).style.lineHeight = "1";
+                }
+
+                document.getElementById("footer-box").style.background = "#900000";
+                document.getElementById("footer-foot-box").style.background = "#DA6E6E";
+
+                function deleteClicked(foodBankID) {
+
+                    swal({
+                            title: "Are you sure?",
+                            text: "Once deleted, food bank record will be removed completely.",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                $.ajax({
+                                    url: '/deleteFoodBank',
+                                    type: "POST",
+                                    data: {
+                                        foodBankID: foodBankID
+                                    },
+                                    success: function(data) {
+                                        swal(data.foodbank_name + " has been deleted.", {
+                                            icon: "success",
+                                        }).then(function() {
+                                            location.reload(true);
+                                        });
+                                    },
+                                    error: function(jqXHR, textStatus, err) {
+                                        alert('text status ' + textStatus + ', err ' + err);
+                                    }
+                                });
+                            }
+                        });
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-jKFOTiExF1_6T8WMxF5gBr2m9F82kO8&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+</body>
+
+</html>

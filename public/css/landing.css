@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'great_wishes';
+    src: url(../fonts/great_wishes-webfont.woff2) format('woff2'), url(../fonts/great_wishes-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.landing-box {
+    background-image: linear-gradient(rgba(0, 0, 0, .1), rgb(0, 0, 0, .1)), url('../img/Landing Page.png');
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    animation: fadeInOut 4s;
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.landing-logo {
+    color: #efefef;
+    padding: 30px;
+}
+
+.fa-pepper-hot {
+    padding: 5px;
+    color: #EA5C50;
+}
+
+.landing-text-box {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'great_wishes', sans-serif;
+    font-size: 200%;
+    color: #efefef;
+}
+
+.landing-text-box h1:hover {
+    animation: shakeIt 0.5s ease-in-out both;
+}
+
+@keyframes shakeIt {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+    25% {
+        transform: rotate(3deg) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: rotate(-3deg) translate3d(0, 0, 0);
+    }
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+.btn:link,
+.btn {
+    border: 3px solid #627964;
+    color: #627964;
+    background-color: transparent;
+    border-radius: 200px;
+    padding: 10px 30px;
+    font-weight: 600;
+    font-size: 24px;
+    size: 200%;
+    margin: 8% 0% 2.5% 2.5%;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.btn:link,
+.btn.two {
+    border-style: dashed;
+}
+
+.btn-full:hover,
+.btn-full:active,
+.btn-full:hover {
+    background-color: #627964;
+    color: #efefef
+}

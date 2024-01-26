@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'great_wishes';
+    src: url(../fonts/great_wishes-webfont.woff2) format('woff2'), url(../fonts/great_wishes-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.clearfix {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.header-box,
+.header-img {
+    position: relative;
+    width: 100%;
+}
+
+.header-img-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'great_wishes', sans-serif;
+    font-size: 400%;
+    color: #efefef;
+}
+
+.imageClass {
+    padding: 5px;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.imageClass left {
+    float: left;
+}
+
+.se-container {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.se-slope1 .se-slope2 {
+    margin: 0 -50px;
+    transform-origin: left center;
+}
+
+.se-slope1 {
+    width: 105%;
+    background: #C3D8C5;
+    transform: rotate(-1deg) translateX(-1%);
+}
+
+.se-slope1 .se-content {
+    transform: rotate(1deg);
+    color: #627964;
+    padding: 50px 250px;
+    text-align: center;
+    font-size: 250%;
+}
+
+.se-slope2 {
+    width: 105%;
+    background: #C3D8C5;
+    transform: rotate(1deg) translateX(-1%);
+}
+
+.se-slope2 .se-content {
+    transform: rotate(-1deg);
+    color: #627964;
+    padding: 50px 250px;
+    text-align: center;
+    font-size: 250%;
+}
+
+.top-padding {
+    display: inline;
+    position: relative;
+}
+
+.left {
+    float: left;
+    display: inline;
+    margin-bottom: 10px;
+}
+
+.right {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.top-padding h1 {
+    font-family: 'great_wishes', sans-serif;
+    font-size: 400%;
+    color: #627964;
+    padding-left: 2%;
+}
+
+.se-slope1 .borderDark,
+.se-slope2 .borderDark {
+    background-color: #627964;
+    height: 10%;
+    transform: translateY(2%);
+}
+
+.borderLight,
+.borderLight {
+    background-color: #C3D8C5;
+    height: 2%;
+    overflow: hidden;
+}
+
+.btn:link,
+.btn {
+    border: 3px solid #659468;
+    color: #659468;
+    background-color: transparent;
+    border-radius: 200px;
+    padding: 10px 30px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    size: 200%;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.btn-margin {
+    margin: 3% 0% 0% 2.5%;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    background-color: #659468;
+    color: #efefef
+}
+
+footer {
+    margin-top: 43%;
+}

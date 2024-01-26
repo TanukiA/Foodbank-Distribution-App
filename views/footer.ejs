@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/footer.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+    <title>Footer</title>
+</head>
+
+<body>
+    <div id="footer-box" class="footer-box">
+        <div class="landing-logo">
+            <h2 id="footerH2" class="footerH2">ChilliSos
+                <icon class="fas fa-pepper-hot"></icon>
+            </h2>
+        </div>
+        <div class="container">
+            <div class="group-box">
+                <h3 id="footerH3-1">By Group 12</h3>
+                <p id="footerP1">Adeline Fong Li Ling 1191100708</p>
+                <p id="footerP2">Sia Mandy 1181103091</p>
+                <p id="footerP3">Ngo Xing Tung 1181103291</p>
+                <p id="footerP4">Loh Yue Yi 1181103563</p>
+            </div>
+            <div class="image-box">
+                <h3 id="footerH3-2">Images/Icons</h3>
+                <p id="footerP5">Unsplash.com</p>
+                <p id="footerP6">Fontawesome.com</p>
+                <p id="footerP7">Flaction.com</p>
+            </div>
+            <div class="icon-box">
+                <h3 id="footerH3-3">References</h3>
+                <p id="footerP8">Google Maps Platform</p>
+                <p id="footerP9">Boostraps</p>
+            </div>
+        </div>
+        <div class="to-top" id="to-top">
+            <icon class="fas fa-chevron-up fa-2x"></icon>
+        </div>
+    </div>
+
+
+    <div id="footer-foot-box" class="footer-foot-box">
+        <h6>Copyright © 2021. All Right Reversed</h6>
+    </div>
+
+    <script>
+        document.getElementById("to-top").addEventListener('click', function() {
+            var toTop = document.getElementById("logo");
+            toTop.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        });
+    </script>
+</body>
+
+</html>

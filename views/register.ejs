@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="css/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/20ddbdf3e1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="background-box">
+        <div class="logo-box">
+            <h2>ChilliSos
+                <icon class="fas fa-pepper-hot"></icon>
+            </h2>
+        </div>
+
+        <div class="register-box">
+            <div class="left-side">
+                <img src="img/register.png" alt="register's sticker">
+            </div>
+            <div class="right-side">
+                <div class="form-box">
+                    <form action="/register" method="POST">
+                        <h2>Sign Up</h2>
+                        <div class="input-box one">
+                            <div class="icon">
+                                <icon class="fas fa-user"></icon>
+                            </div>
+                            <div>
+                                <h5>Username</h5>
+                                <input class="input" type="text" name="username" id="username">
+                            </div>
+                        </div>
+
+                        <div class="input-box two">
+                            <div class="icon">
+                                <icon class="fas fa-lock"></icon>
+                            </div>
+                            <div>
+                                <h5>Password</h5>
+                                <input class="input" type="password" name="password" id="password">
+                            </div>
+                        </div>
+
+                        <div class="input-box three">
+                            <div class="icon">
+                                <icon class="fas fa-pen"></icon>
+                            </div>
+                            <div>
+                                <h5>Your Name</h5>
+                                <input class="input" type="text" name="name" id="name">
+                            </div>
+                        </div>
+
+                        <div class="input-box four">
+                            <div class="icon">
+                                <icon class="fas fa-envelope"></icon>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <input class="input" type="email" name="email" id="email">
+                            </div>
+                        </div>
+
+                        <div class="input-box five">
+                            <div class="icon">
+                                <icon class="fas fa-phone"></icon>
+                            </div>
+                            <div>
+                                <h5>Phone Number</h5>
+                                <input class="input" type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{7-9}" required title="eg. 0121820662">
+                            </div>
+                        </div>
+
+                        <input type="submit" id="submit" class="btn btn-full" value="Sign Up" />
+                        <h6>Already have an account</h6>
+                        <a href="login">Click Here to Login</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if (typeof myAlert != 'undefined') { %>
+        <div class="blur-background">
+            <div class="error-box">
+                <div class="close">+</div>
+                <h3>- Error -</h3>
+                <ul class="list">
+                    <% Object.values(myAlert).forEach(function(error){ %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+        </div>
+        <script>
+            document.querySelector('.blur-background').style.display = 'flex';
+        </script>
+        <% } %>
+
+            <% if (typeof errorMessage != 'undefined') { %>
+                <div class="blur-background">
+                    <div class="error-box">
+                        <div class="close">+</div>
+                        <h3>- Opps -</h3>
+                        <ul class="list">
+                            <% for(var i=0; i<errorMessage.length; i++) {%>
+                                <li>
+                                    <%= errorMessage[i] %>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    document.querySelector('.blur-background').style.display = 'flex';
+                </script>
+                <% } %>
+                    <script type="text/javascript" src="js/register.js"></script>
+</body>
+
+</html>

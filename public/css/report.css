@@ -1,0 +1,97 @@
+#title {
+    color: #900000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-indent: 40px;
+}
+
+#hr-out {
+    border-top: 5px solid#900000;
+    width: 3.5%;
+    margin: 40px;
+}
+
+#report-box {
+    background-color: #f79b9be8;
+    padding: 45px;
+    padding-bottom: 80px;
+    transform: skewY(-2deg);
+}
+
+.report-table {
+    background-color: white;
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    margin-top: 30px;
+    left: 50%;
+    padding: 70px;
+    
+    transform: skewY(2deg);
+}
+
+#table {
+    background-color: white;
+    border: 2px outset #900000;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    margin: 10px auto;
+    padding: 45px;
+    width: 100%;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.report-btn:link,
+.report-btn {
+    border: 3px solid #900000;
+    color: #900000;
+    background-color: transparent;
+    border-radius: 150px;
+    padding: 8px 16px;
+    font-family: 'Monsterrat', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    size: 100%;
+    margin: 1% 0% 1% 1%;
+    float: right;
+    cursor: pointer;
+}
+
+.report-btn-full:hover,
+.report-btn-full:active
+ {
+    background-color: #900000;
+    color: #efefef
+}
+
+.report-title{
+    font-family: 'Monsterrat', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #900000;
+    margin-top: 8%;
+    text-align: center;
+}
+
+.break{
+    width:100%;
+    height:3%;
+    border-top: 5px solid#900000;
+    
+}
+
+.numberLabel{
+    font-family: 'Monsterrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #900000;
+    margin: 2% 0;
+}
+
+th{
+    text-align: center;
+}
